@@ -1,17 +1,16 @@
 package mvc.spring.example.recipe.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Category {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String categoryName;
+    private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
@@ -24,12 +23,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Set<Recipe> getRecipes() {
