@@ -1,11 +1,13 @@
 package mvc.spring.example.recipe.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Ingredient {
 

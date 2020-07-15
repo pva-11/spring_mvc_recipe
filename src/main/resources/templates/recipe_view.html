@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 th:text="${recipe.description}">Meal"</h2>
+    <ul class="list-group" th:each="category : ${recipe.categories}">
+        <li class="list-group-item" th:text="${category.description}">Category item</li>
+    </ul>
+    <p th:text="'Preparation time is ' + ${recipe.prepTime} + ' min. Difficulty: ' + ${recipe.difficulty}">Enjoy your meal!</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ingredient</th>
+            <th>Amount</th>
+            <th>Unit of measure</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ingredient : ${recipe.ingredients}">
+            <td th:text="${ingredient.id}">N/A</td>
+            <td th:text="${ingredient.description}">Name</td>
+            <td th:text="${ingredient.amount}">N/A</td>
+            <td th:text="${ingredient.getUom().getName()}">N/A</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <p>Notes</p>
+    <div class="well" th:text="${recipe.notes.getRecipeNotes()}">notes</div>
+    <p><a href="#" th:href="@{'/recipes'}">Back to recipes list</a></p>
+</div>
+</body>
+</html>
