@@ -1,5 +1,6 @@
 package mvc.spring.example.recipe.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import mvc.spring.example.recipe.model.*;
 import mvc.spring.example.recipe.repositories.CategoryRepository;
 import mvc.spring.example.recipe.repositories.RecipeRepository;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -95,6 +97,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         sandwich.addIngredients(new Ingredient("souce", new BigDecimal(1), spoonUom));
 
         recipes.add(sandwich);
+        log.debug("RecipeBootstrap: new Recipe entity created" + sandwich.getDescription());
 
         Recipe pizza = new Recipe();
 
@@ -111,6 +114,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         pizza.addIngredients(new Ingredient("becon", new BigDecimal(5), sliceUom));
 
         recipes.add(pizza);
+        log.debug("RecipeBootstrap: new Recipe entity created" + pizza.getDescription());
 
         return recipes;
 
