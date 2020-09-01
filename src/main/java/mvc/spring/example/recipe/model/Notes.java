@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
 
@@ -17,7 +18,7 @@ public class Notes {
     @Lob
     private String recipeNotes;
 
-    @OneToOne
+    @OneToOne(mappedBy="notes")
     private Recipe recipe;
 
     public Notes(String recipeNotes) {

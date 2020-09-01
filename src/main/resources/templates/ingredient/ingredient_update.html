@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+    <form  th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'} " method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="pannel-group">
+            <div class="panel panel-light">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Edit Ingredient Information</h1>
+                </div>
+                <div class="panel-body">
+
+
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Description:</label>
+                            <input type="text" class="form-control" th:field="*{description}"/>
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label>Amount:</label>
+                            <input type="number" class="form-control" th:field="*{amount}"/>
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label>UOM:</label>
+                            <select class="form-control" name="uom.id">
+                                <option th:each="uomEach : ${uomList}"
+                                        th:value="${uomEach.id}"
+                                        th:selected="${uomEach.id.equals(ingredient.uom.getId())}"
+                                        th:text="${uomEach.getName()}">Each</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-light">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

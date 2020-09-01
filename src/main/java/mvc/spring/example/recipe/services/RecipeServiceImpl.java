@@ -51,4 +51,18 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeToRecipeCommand.convert(savedRecipe);
     }
 
+    @Override
+    public RecipeCommand findCommandByID(Long id) {
+        Optional<Recipe> recipeToUpdate = recipeRepository.findById(id);
+        if (!recipeToUpdate.isPresent()) {
+            throw new NoSuchElementException("Couldn't find the recipe by id: " + id);
+        }
+        return recipeToRecipeCommand.convert(recipeToUpdate.get());
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long ID) {
+        recipeRepository.deleteById(ID);
+    }
 }

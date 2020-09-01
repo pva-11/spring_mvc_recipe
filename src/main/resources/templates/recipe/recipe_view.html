@@ -14,6 +14,8 @@
     </ul>
     <p th:text="'Preparation time is ' + ${recipe.prepTime} + ' min. Difficulty: ' + ${recipe.difficulty}">Enjoy your meal!</p>
     <table class="table">
+        <h2>Ingredients</h2>
+        <a class="btn btn-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View ingredients</a>
         <thead>
         <tr>
             <th>Id</th>
