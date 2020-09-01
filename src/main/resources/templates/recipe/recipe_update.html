@@ -13,6 +13,7 @@
             <!--/*@thymesVar id="recipe" type="guru.springframework.commands.RecipeCommand"*/-->
             <form  th:object="${recipe}" th:action="@{/recipe/}"  method="post">
                 <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{image}"/>
                 <div class="pan  el-group">
                     <div class="panel panel-light">
                         <div class="panel-heading">
@@ -61,9 +62,6 @@
                                 <div class="col-md-11 ">
                                     <h1 class="panel-title">Ingredients</h1>
                                 </div>
-                                <div class="col-md-1">
-                                    <a class="btn btn-light" href="#" role="button">Edit</a>
-                                </div>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -73,8 +71,6 @@
                                         <li th:each="ingredient : ${recipe.ingredients}"
                                             th:text="${(ingredient.getAmount() +
                                         ' ' + ingredient.uom.getName() +
-
-
                                         ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
                                         </li>
                                     </ul>

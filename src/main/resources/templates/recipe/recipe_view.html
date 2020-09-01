@@ -12,6 +12,11 @@
     <ul class="list-group" th:each="category : ${recipe.categories}">
         <li class="list-group-item" th:text="${category.description}">Category item</li>
     </ul>
+    <img src="../../static/images/new_meal.jpg"
+         th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+         width="200" height="150">
+    <a class="btn btn-default" href="#"
+       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
     <p th:text="'Preparation time is ' + ${recipe.prepTime} + ' min. Difficulty: ' + ${recipe.difficulty}">Enjoy your meal!</p>
     <table class="table">
         <h2>Ingredients</h2>
