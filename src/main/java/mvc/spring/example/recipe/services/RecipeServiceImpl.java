@@ -8,10 +8,7 @@ import mvc.spring.example.recipe.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -27,8 +24,8 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Set<Recipe> getAllRecipes() {
-        Set<Recipe> recipes = new HashSet<>();
+    public List<Recipe> getAllRecipes() {
+        List<Recipe> recipes = new ArrayList<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
         return recipes;
     }

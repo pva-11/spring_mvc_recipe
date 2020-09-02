@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <h2 th:text="${recipe.description}">Meal"</h2>
-    <ul class="list-group" th:each="category : ${recipe.categories}">
+    <ul class="col-md-2 list-group" th:each="category : ${recipe.categories}">
         <li class="list-group-item" th:text="${category.description}">Category item</li>
     </ul>
-    <img src="../../static/images/new_meal.jpg"
-         th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
-         width="200" height="150">
-    <a class="btn btn-default" href="#"
-       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
-    <p th:text="'Preparation time is ' + ${recipe.prepTime} + ' min. Difficulty: ' + ${recipe.difficulty}">Enjoy your meal!</p>
+    <div class="container">
+        <img src="../../static/images/new_meal.jpg"
+            alt="Please, choose the meal image!"
+            th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+            width="200" height="150">
+        <a class="btn btn-default" href="#"
+            th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+    </div>
+    <h3 th:text="'Preparation time is ' + ${recipe.prepTime} + ' min. Difficulty: ' + ${recipe.difficulty}">Enjoy your meal!</h3>
     <table class="table">
-        <h2>Ingredients</h2>
-        <a class="btn btn-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View ingredients</a>
+        <h3>Ingredients</h3>
+        <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View ingredients</a>
         <thead>
         <tr>
             <th>Id</th>
@@ -40,9 +44,9 @@
     </table>
 </div>
 <div class="container">
-    <p>Notes</p>
+    <h3>Notes</h3>
     <div class="well" th:text="${recipe.notes.getRecipeNotes()}">notes</div>
-    <p><a href="#" th:href="@{'/recipes'}">Back to recipes list</a></p>
+    <h4><a href="#" th:href="@{'/recipes'}">Back to recipes list</a></h4>
 </div>
 </body>
 </html>

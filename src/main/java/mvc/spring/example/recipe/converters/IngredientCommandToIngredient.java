@@ -1,10 +1,7 @@
 package mvc.spring.example.recipe.converters;
 
 
-import lombok.Synchronized;
-import mvc.spring.example.recipe.commands.CategoryCommand;
 import mvc.spring.example.recipe.commands.IngredientCommand;
-import mvc.spring.example.recipe.model.Category;
 import mvc.spring.example.recipe.model.Ingredient;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;

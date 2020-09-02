@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -14,7 +15,7 @@
             <form  th:object="${recipe}" th:action="@{/recipe/}"  method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{image}"/>
-                <div class="pan  el-group">
+                <div class="panel-group">
                     <div class="panel panel-light">
                         <div class="panel-heading">
                             <h1 class="panel-title">Edit Recipe Information</h1>
@@ -30,14 +31,12 @@
                                 <div class="col-md-3 form-group">
                                     <label>Categories:</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Fast Food</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Italian</label>
-                                </div>
+                                <td>
+                                    <th:block th:each="category : ${categoryList}">
+                                        <input type="checkbox" th:field="*{categories}" th:value="${category.id}"/>
+                                        <label th:text="${category.description}"></label>
+                                    </th:block>
+                                </td>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
@@ -59,7 +58,7 @@
                     <div class="panel panel-light">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-md-11 ">
+                                <div class="col-md-11">
                                     <h1 class="panel-title">Ingredients</h1>
                                 </div>
                             </div>

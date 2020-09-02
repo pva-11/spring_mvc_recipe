@@ -1,6 +1,7 @@
 package mvc.spring.example.recipe.controllers;
 
 import mvc.spring.example.recipe.commands.RecipeCommand;
+import mvc.spring.example.recipe.services.CategoryService;
 import mvc.spring.example.recipe.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class RecipeListController {
 
     private final RecipeService recipeService;
+    private final CategoryService categoryService;
 
-    public RecipeListController(RecipeService recipeService) {
+    public RecipeListController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping({"recipes","recipes/"})
@@ -30,12 +33,14 @@ public class RecipeListController {
     @GetMapping("recipe/new")
     public String newRecipe(Model model) {
         model.addAttribute("recipe", new RecipeCommand());
+        model.addAttribute("categoryList", categoryService.getAllCategorites());
         return "recipe/recipe_update";
     }
 
     @GetMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findCommandByID(Long.valueOf(id)));
+        model.addAttribute("categoryList", categoryService.getAllCategorites());
         return "recipe/recipe_update";
     }
 

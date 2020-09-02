@@ -43,6 +43,7 @@ public class ImageController {
 
     @GetMapping("recipe/{id}/recipeimage")
     public void uploadImageFromDB(@PathVariable String id, HttpServletResponse response) {
+
         RecipeCommand recipeCommand = recipeService.findCommandByID(Long.valueOf(id));
 
         if (recipeCommand.getImage() != null) {
