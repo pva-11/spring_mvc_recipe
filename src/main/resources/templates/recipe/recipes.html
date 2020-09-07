@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>List of recipes</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -10,7 +10,11 @@
     <body>
         <div class="container">
             <form  th:action="@{/recipe/new}" method="get">
-                <h2>Recipes List</h2>
+                <h2>Recipes List
+                    <a href="#" th:href="@{'/logout'}" class="btn btn-light btn-lg">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                    </a>
+                </h2>
                 <p>Please look through and choose the recipe you want to cook</p>
                 <table class="table">
                     <thead>

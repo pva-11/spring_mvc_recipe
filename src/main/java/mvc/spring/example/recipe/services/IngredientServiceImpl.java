@@ -9,6 +9,7 @@ import mvc.spring.example.recipe.repositories.IngredientRepository;
 import mvc.spring.example.recipe.repositories.RecipeRepository;
 import mvc.spring.example.recipe.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
 
         Optional<Recipe> optionalRecipeById = recipeRepository.findById(recipeId);
@@ -53,6 +55,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    @Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommand) {
 
         Optional<Recipe> optionalRecipe = recipeRepository.findById(ingredientCommand.getRecipeId());
@@ -97,6 +100,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
 
         Optional<Ingredient> ingredientFound = ingredientRepository.findById(id);

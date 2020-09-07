@@ -4,6 +4,7 @@ import mvc.spring.example.recipe.commands.UnitOfMeasureCommand;
 import mvc.spring.example.recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import mvc.spring.example.recipe.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class UnitsOfMeasureServiceImpl implements UnitsOfMeasureService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Set<UnitOfMeasureCommand> getAllUoms() {
         return StreamSupport.stream(unitOfMeasureRepository.findAll().spliterator(), false)
         .map(unitOfMeasureToUnitOfMeasureCommand::convert).collect(Collectors.toSet());

@@ -24,6 +24,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Recipe> getAllRecipes() {
         List<Recipe> recipes = new ArrayList<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
@@ -31,6 +32,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Recipe getById(Long id) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
@@ -49,6 +51,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RecipeCommand findCommandByID(Long id) {
         Optional<Recipe> recipeToUpdate = recipeRepository.findById(id);
         if (!recipeToUpdate.isPresent()) {

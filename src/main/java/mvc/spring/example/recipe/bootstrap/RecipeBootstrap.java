@@ -3,6 +3,7 @@ package mvc.spring.example.recipe.bootstrap;
 import lombok.extern.slf4j.Slf4j;
 import mvc.spring.example.recipe.model.*;
 import mvc.spring.example.recipe.repositories.CategoryRepository;
+import mvc.spring.example.recipe.repositories.MyAppUserRepository;
 import mvc.spring.example.recipe.repositories.RecipeRepository;
 import mvc.spring.example.recipe.repositories.UnitOfMeasureRepository;
 import org.springframework.context.ApplicationListener;
@@ -21,16 +22,20 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final MyAppUserRepository myAppUserRepository;
 
-    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository,
+                           UnitOfMeasureRepository unitOfMeasureRepository, MyAppUserRepository myAppUserRepository) {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+        this.myAppUserRepository = myAppUserRepository;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(createRecipes());
+        myAppUserRepository.saveAll(createDefaultUsers());
     }
 
     private List<Recipe> createRecipes() {
@@ -118,6 +123,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         return recipes;
 
+    }
+
+    private List<MyAppUser> createDefaultUsers() {
+        List<MyAppUser> users = new ArrayList<>();
+        users.add(new MyAppUser("user", "user", "user@fake-mail.com", "XXX-XXX-XX-XX", UserRole.USER));
+        users.add(new MyAppUser("admin", "admin", "admin@fake-mail.com", "YYY-YYY-YY-YY", UserRole.ADMIN));
+        return users;
     }
 
 }

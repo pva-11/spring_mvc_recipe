@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title th:text="'The recipe for ' + ${recipe.description}">The recipe</title>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -46,7 +46,9 @@
 <div class="container">
     <h3>Notes</h3>
     <div class="well" th:text="${recipe.notes.getRecipeNotes()}">notes</div>
-    <h4><a href="#" th:href="@{'/recipes'}">Back to recipes list</a></h4>
+    <h4>
+        <a href="#" th:href="@{'/recipes'}">Back to recipes list</a>
+    </h4>
 </div>
 </body>
 </html>
