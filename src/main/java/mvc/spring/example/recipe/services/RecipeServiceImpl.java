@@ -34,11 +34,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional(readOnly = true)
     public Recipe getById(Long id) {
-        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
-        if (!optionalRecipe.isPresent()) {
-            throw new NoSuchElementException("Couldn't find the recipe by id: " + id);
-        }
-        return optionalRecipe.get();
+        Recipe recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Couldn't find the recipe by id: " + id));
+        return recipe;
     }
 
     @Override
@@ -53,11 +51,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional(readOnly = true)
     public RecipeCommand findCommandByID(Long id) {
-        Optional<Recipe> recipeToUpdate = recipeRepository.findById(id);
-        if (!recipeToUpdate.isPresent()) {
-            throw new NoSuchElementException("Couldn't find the recipe by id: " + id);
-        }
-        return recipeToRecipeCommand.convert(recipeToUpdate.get());
+        Recipe recipeToUpdate = recipeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Couldn't find the recipe by id: " + id));
+        return recipeToRecipeCommand.convert(recipeToUpdate);
     }
 
     @Override

@@ -13,6 +13,7 @@ import java.util.Optional;
 @Component
 public class CategoryCommandToCategory implements Converter<Long, Category> {
 
+    // TODO: 26.10.2020 implement Mappers with MupStruct
     private final CategoryRepository categoryRepository;
 
     public CategoryCommandToCategory(CategoryRepository categoryRepository) {

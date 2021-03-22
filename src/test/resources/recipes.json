@@ -1,0 +1,17 @@
+[
+  {
+    "id":1,
+    "description":"Borsh",
+    "prepTime":60
+  },
+  {
+    "id":2,
+    "description":"Soup",
+    "prepTime":30
+  },
+  {
+    "id":3,
+    "description":"Pizza",
+    "prepTime":15
+  }
+]
