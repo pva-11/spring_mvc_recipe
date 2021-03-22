@@ -1,12 +1,12 @@
 package mvc.spring.example.recipe.commands;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class CategoryCommand {
 
     private Long id;
